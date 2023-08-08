@@ -134,3 +134,24 @@ body{
     color: #06283D;
     font-size: 28px;
 }
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 14px; /* Adjust the font size for better readability */
+    min-width: auto;
+  }
+
+  .container {
+    width: 90%; /* Make the container almost full width on small screens */
+  }
+
+  .search input[type='text'] {
+    width: 60%; /* Reduce the width of the input on small screens */
+    font-size: 1rem; /* Adjust the font size for better readability */
+  }
+
+  .btn {
+    width: 30px; /* Make the button smaller on small screens */
+  }
+
+  /* Add additional styles as needed to optimize the layout for mobile devices */
+}
