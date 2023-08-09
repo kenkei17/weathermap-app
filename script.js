@@ -36,7 +36,41 @@ function getData() {
       console.error("Error during fetching data:" + error);
     });
 }
+function reloadData(city) {
+  const API_KEY = "1fb04d2579c36a21d0df8c0c939ad6d7";
+  const cityName = city;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`;
 
+  // Make request using fetch method
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.message === "city not found") {
+        document.querySelector(".container").innerHTML =
+          "<h1>City Not Found</h1>";
+      } else {
+        // Handle the fetched data
+        setIcon(data.weather[0].main);
+        setTemperature(data.main.temp);
+        setCityName(data.name);
+        setHumidity(data.main.humidity);
+        setWindSpeed(data.wind.speed);
+
+        // Store weather data in localStorage
+        const weatherData = {
+          icon: data.weather[0].main,
+          temperature: data.main.temp,
+          cityName: data.name,
+          humidity: data.main.humidity,
+          windSpeed: data.wind.speed,
+        };
+        localStorage.setItem("lastWeather", JSON.stringify(weatherData));
+      }
+    })
+    .catch((error) => {
+      console.error("Error during fetching data:" + error);
+    });
+}
 //function for set icon in the application
 function setIcon(data) {
   let icon = document.getElementById("icon");
@@ -92,8 +126,13 @@ function setWindSpeed(data) {
 }
 document.addEventListener("DOMContentLoaded", () => {
   const storedWeatherData = localStorage.getItem("lastWeather");
+  reloadData();
   if (storedWeatherData) {
     const weatherData = JSON.parse(storedWeatherData);
+    setTimeout(() => {
+      reloadData(weatherData.cityName);
+    }, 2000);
+    reloadData(weatherData.cityName);
     setIcon(weatherData.icon);
     setTemperature(weatherData.temperature);
     setCityName(weatherData.cityName);
