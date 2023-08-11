@@ -41,6 +41,7 @@ body{
     padding: 3rem 2rem;
     position: relative;
 }
+
 .search{
     display: flex;
     justify-content: space-between;
@@ -54,6 +55,7 @@ body{
     width: 75%;
     font-size: 1.3rem;
     background-color: whitesmoke;
+    
 }
 .btn{
     border-radius: 50%;
@@ -123,15 +125,19 @@ body{
     font-weight: 500;
     text-transform: uppercase;
     padding-left: 32px;
+    border-radius: 3px;
 }
 
 .search-box input::placeholder{
     font-size: 20px;
     font-weight: 500;
     color: #06283D;
-    text-transform: capitalize;
+    text-transform: uppercase;
 }
-
+.search-box input:focus{
+    outline: none;
+    
+}
 .search-box button{
     cursor: pointer;
     width: 50px;

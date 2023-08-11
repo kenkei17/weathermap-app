@@ -126,12 +126,10 @@ function setWindSpeed(data) {
 }
 document.addEventListener("DOMContentLoaded", () => {
   const storedWeatherData = localStorage.getItem("lastWeather");
-  reloadData();
+  //reloadData();
   if (storedWeatherData) {
     const weatherData = JSON.parse(storedWeatherData);
-    setTimeout(() => {
-      reloadData(weatherData.cityName);
-    }, 2000);
+
     reloadData(weatherData.cityName);
     setIcon(weatherData.icon);
     setTemperature(weatherData.temperature);
@@ -139,4 +137,25 @@ document.addEventListener("DOMContentLoaded", () => {
     setHumidity(weatherData.humidity);
     setWindSpeed(weatherData.windSpeed);
   }
+  let counter = 0;
+  setInterval(() => {
+    counter++;
+    console.log("seconds: " + counter + "0");
+  }, 10000);
+  setInterval(() => {
+    const storedWeatherData = localStorage.getItem("lastWeather");
+    if (storedWeatherData) {
+      const weatherData = JSON.parse(storedWeatherData);
+      reloadData(weatherData.cityName);
+      setIcon(weatherData.icon);
+      setTemperature(weatherData.temperature);
+      setCityName(weatherData.cityName);
+      setHumidity(weatherData.humidity);
+      setWindSpeed(weatherData.windSpeed);
+      setInterval(() => {
+        console.log("Counting: " + counter + 1);
+      }, 1000);
+      console.log("25-minute mark has passed refetched the data");
+    }
+  }, 25 * 60 * 1000);
 });
