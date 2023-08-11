@@ -152,10 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setCityName(weatherData.cityName);
       setHumidity(weatherData.humidity);
       setWindSpeed(weatherData.windSpeed);
-      setInterval(() => {
-        console.log("Counting: " + counter + 1);
-      }, 1000);
       console.log("25-minute mark has passed refetched the data");
     }
-  }, 25 * 60 * 1000);
+  }, 3 * 60 * 1000);
 });
