@@ -153,6 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setHumidity(weatherData.humidity);
       setWindSpeed(weatherData.windSpeed);
       console.log("25-minute mark has passed refetched the data");
+      const currentTime = new Date();
       console.log(`Data refetched at: ${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()}`);
     }
   }, 3 * 60 * 1000);
